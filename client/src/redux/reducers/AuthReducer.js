@@ -10,7 +10,7 @@ let initialState = {
 
 const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
-    case AuthConstants.LOGIN_REQUEST:
+    case AuthConstants.SIGN_UP_REQUEST:
       return {
         ...state,
         loginPending: true,
@@ -18,7 +18,7 @@ const AuthReducer = (state = initialState, action) => {
         loadingResult: true,
         error: null,
       }
-    case AuthConstants.LOGIN_SUCCESS:
+    case AuthConstants.SIGN_UP_SUCCESS:
       return {
         ...state,
         auth: true,
@@ -27,7 +27,7 @@ const AuthReducer = (state = initialState, action) => {
         loadingResult: false,
         error: null,
       }
-    case AuthConstants.LOGIN_FAILURE:
+    case AuthConstants.SIGN_UP_FAILURE:
       return {
         ...state,
         error: action.error,
@@ -35,14 +35,39 @@ const AuthReducer = (state = initialState, action) => {
         loginPending: false,
         loadingResult: false,
       }
-    case AuthConstants.LOGOUT_REQUEST:
+    case AuthConstants.SIGN_IN_REQUEST:
+      return {
+        ...state,
+        loginPending: true,
+        auth: false,
+        loadingResult: true,
+        error: null,
+      }
+    case AuthConstants.SIGN_IN_SUCCESS:
+      return {
+        ...state,
+        auth: true,
+        user: action.data,
+        loginPending: false,
+        loadingResult: false,
+        error: null,
+      }
+    case AuthConstants.SIGN_IN_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        auth: false,
+        loginPending: false,
+        loadingResult: false,
+      }
+    case AuthConstants.SIGN_OUT_REQUEST:
       return {
         ...state,
         loginPending: true,
         loadingResult: true,
         error: null,
       }
-    case AuthConstants.LOGOUT_SUCCESS:
+    case AuthConstants.SIGN_OUT_SUCCESS:
       return {
         ...state,
         auth: false,
@@ -50,7 +75,7 @@ const AuthReducer = (state = initialState, action) => {
         loginPending: false,
         loadingResult: false,
       }
-    case AuthConstants.LOGOUT_FAILURE:
+    case AuthConstants.SIGN_OUT_FAILURE:
       return {
         ...state,
         error: action.error,
