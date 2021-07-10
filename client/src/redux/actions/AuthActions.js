@@ -1,6 +1,5 @@
 import callApi from '../../util/apiCaller'
 import AuthConstants from '../types/AuthConstants'
-import { setCookie, removeCookie } from '../../util/cookie'
 
 const request = ({ type }) => {
   return {
