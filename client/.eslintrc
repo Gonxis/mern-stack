@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["react", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb-base",
+    "eslint-config-prettier"
+  ],
+  "rules": {
+    "arrow-body-style": "warn",
+    "no-tabs": "off",
+    "semi": "off"
+  }
+}
