@@ -5,12 +5,11 @@ import './App.css'
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import PostListPage from './Post/pages/PostListPage/PostListPage'
 import PostDetailPage from './Post/pages/PostDetailPage/PostDetailPage'
-import SignIn from './components/SignIn/SignIn'
-import SignUp from './components/SignUp/SignUp'
 import { Provider } from 'react-redux'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './Nav/components/Navbar'
+import LoginPage from './pages/LoginPage/LoginPage'
 
 const theme = createMuiTheme({
   palette: {
@@ -35,7 +34,7 @@ function App(props) {
                   exact
                   component={PostDetailPage}
                 />
-                <Route path='/login' exact component={SignUp} />
+                <Route path='/login' exact component={LoginPage} />
               </Switch>
             </BrowserRouter>
           </Provider>
