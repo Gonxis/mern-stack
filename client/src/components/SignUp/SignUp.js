@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { TextField } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import Form from '../Form/Form'
+import styles from '../Form/styles'
 
 const SignUp = ({ loading, error }) => {
   const [email, setEmail] = useState('')
@@ -54,7 +55,10 @@ const SignUp = ({ loading, error }) => {
 
   const footer = (
     <p>
-      Do you have an account? <span onClick={() => signin()}>Sign in</span>
+      Do you have an account?{' '}
+      <span style={styles.footer} onClick={() => signin()}>
+        Sign in
+      </span>
     </p>
   )
 
