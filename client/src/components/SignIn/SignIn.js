@@ -4,13 +4,9 @@ import PropTypes from 'prop-types'
 import Form from '../Form/Form'
 import styles from '../Form/styles'
 
-const SignIn = ({ loading, error }) => {
+const SignIn = ({ loading, error, handleSigningUp, signIn }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  const signup = () => {
-    console.log('I am entering here')
-  }
 
   const handleChange = event => {
     const input = event.target.value
@@ -42,12 +38,14 @@ const SignIn = ({ loading, error }) => {
   const footer = (
     <p>
       Don't have an account yet?{' '}
-      <span style={styles.footer} onClick={() => signup()}>
+      <span style={styles.footer} onClick={() => handleSigningUp()}>
         Sign up
       </span>{' '}
       for free
     </p>
   )
+
+  const handleButtonClick = () => signIn({ email, password })
 
   if (loading) {
     return <p>Loading...</p>
@@ -64,6 +62,7 @@ const SignIn = ({ loading, error }) => {
       content={content}
       disable={!email || !password}
       footer={footer}
+      onClickButton={handleButtonClick}
     />
   )
 }
