@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // Import Actions
-import { fetchPost } from '../../../redux/actions/PostActions'
+import { fetchPost } from '../../redux/actions/PostActions'
 // Import Selectors
 import { useParams } from 'react-router-dom'
 

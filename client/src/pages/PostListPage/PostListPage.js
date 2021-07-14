@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router'
 // Import Components
-import PostList from '../../components/PostList'
-import PostCreateWidget from '../../components/PostCreateWidget'
+import PostList from '../../components/PostList/PostList'
+import PostCreateWidget from '../../components/PostWidget/PostCreateWidget'
 // Import Actions
 import {
   addPostRequest,
   deletePostRequest,
   fetchPosts,
-} from '../../../redux/actions/PostActions'
+} from '../../redux/actions/PostActions'
 import Logo from '../../../logo.svg'
 
 const PostListPage = ({ showAddPost }) => {

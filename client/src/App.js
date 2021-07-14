@@ -8,7 +8,7 @@ import PostDetailPage from './Post/pages/PostDetailPage/PostDetailPage'
 import { Provider } from 'react-redux'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from './Nav/components/Navbar'
+import Navbar from './components/Nav/Navbar'
 import LoginPage from './pages/LoginPage/LoginPage'
 
 const theme = createMuiTheme({
