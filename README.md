@@ -35,10 +35,26 @@ On the server project I used Passport with a JWT policy to manage the user sessi
 - passport-local
 - bcrypt
 
-## Refactoring the project
+## Refactoring the project 📚
 
-I refactored the client project a little bit 📚
+I refactored the client project a little bit
 
 - src/components
 - src/pages
 - src/redux
+
+## Challenge 🎯
+
+This challenge has two parts. We have to do a sign up and log in component and manage this functionality and also we have to enable the upload of an image when adding a post.
+
+### User account management 👩‍💻
+
+I have complete the sign up and log in functionality and some implementations I have left for this challenge are:
+
+- Mantain the session of the user even if refreshing the page
+- Doing log out only when clicking on the `logout` navigation button
+- Disable deleting a post unless it's the author of it.
+
+### Picture upload 🏞️
+
+I still have to do this functionality
