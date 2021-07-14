@@ -1,67 +1,58 @@
-const User = require("../models/user");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
+
 /**
  * Sign up a User
  * @param req
  * @param res
- * @returns void
+ * @returns User
  */
-signUp = async (req, res) => {
-  const { email, password } = req.body;
-
-  const user = await User.create({
-    email,
-    password,
-  });
-
-  if (!user) {
-    res.status(400).json({ error: "Sorry for that" });
-  }
-
-  res.status(200).json({ user });
+signUp = async () => {
+  passport.authenticate("signup", { session: false }),
+    async (req, res, next) => {
+      res.json({
+        message: "Signup successful",
+        user: req.user,
+      });
+    };
 };
 
 /**
  * Sign in User
  * @param req
  * @param res
- * @returns void
+ * @returns User
  */
-signIn = async (req, res) => {
-  if (!req.body.post.name || !req.body.post.title || !req.body.post.content) {
-    res.status(403).end();
-  }
+signIn = async (req, res, next) => {
+  passport.authenticate("login", async (err, user, info) => {
+    try {
+      if (err || !user) {
+        const error = new Error("An error occurred.");
 
-  const newPost = new Post(req.body.post);
+        return next(error);
+      }
 
-  // Let's sanitize inputs
-  newPost.title = sanitizeHtml(newPost.title);
-  newPost.name = sanitizeHtml(newPost.name);
-  newPost.content = sanitizeHtml(newPost.content);
+      req.login(user, { session: false }, async (error) => {
+        if (error) return next(error);
 
-  newPost.slug = slug(newPost.title.toLowerCase(), { lowercase: true });
-  newPost.cuid = cuid();
-  newPost.save((err, saved) => {
-    if (err) {
-      res.status(500).send(err);
+        const body = { _id: user._id, email: user.email };
+        const token = jwt.sign({ user: body }, "TOP_SECRET");
+
+        return res.json({ token, user: body });
+      });
+    } catch (error) {
+      return next(error);
     }
-    res.json({ post: saved });
-  });
+  })(req, res, next);
 };
 
 /**
- * Get a single post
+ * Sign out
  * @param req
  * @param res
  * @returns void
  */
-signOut = async (req, res) => {
-  Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ post });
-  });
-};
+signOut = async (req, res) => {};
 
 module.exports = {
   signUp,
