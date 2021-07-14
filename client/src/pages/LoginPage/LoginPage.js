@@ -8,10 +8,10 @@ import AuthActions from '../../redux/actions/AuthActions'
 
 const LoginPage = ({}) => {
   const dispatch = useDispatch()
-  const { auth } = useSelector(state => state.auth)
+  const { auth, loadingResult } = useSelector(state => state.auth)
   const [signingUp, setSigningUp] = useState(false)
 
-  if (auth) {
+  if (auth && !loadingResult) {
     return <Redirect to='/' />
   }
 
