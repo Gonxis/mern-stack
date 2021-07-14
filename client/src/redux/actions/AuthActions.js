@@ -31,39 +31,66 @@ const signIn =
   ({ email, password }) =>
   dispatch => {
     dispatch(request({ type: AuthConstants.SIGN_IN_REQUEST }))
-    return callApi('signin', 'post', { email, password }).then(
-      data => {
+    return callApi('signin', 'post', { email, password }).then(response => {
+      if (response.status === 'failed') {
         dispatch(
-          success({ type: AuthConstants.SIGN_IN_SUCCESS, payload: data })
+          failure({
+            type: AuthConstants.SIGN_IN_FAILURE,
+            error: response.error,
+          })
         )
-        dispatch(getUser({ type: AuthConstants.GET_USER, user: data }))
-      },
-      error => dispatch(failure({ type: AuthConstants.SIGN_IN_FAILURE, error }))
-    )
+        alert(response.error)
+      } else {
+        dispatch(
+          success({
+            type: AuthConstants.SIGN_IN_SUCCESS,
+            payload: { token: response.token, user: response.user },
+          })
+        )
+      }
+    })
   }
 
 const signUp =
   ({ email, password }) =>
   dispatch => {
     dispatch(request({ type: AuthConstants.SIGN_UP_REQUEST }))
-    return callApi('signup', 'post', { email, password }).then(
-      data => {
+    return callApi('signup', 'post', { email, password }).then(response => {
+      const { user } = response
+      if (response.status === 'failed') {
         dispatch(
-          success({ type: AuthConstants.SIGN_UP_SUCCESS, payload: data })
+          failure({
+            type: AuthConstants.SIGN_UP_FAILURE,
+            error: response.error,
+          })
         )
-        dispatch(getUser({ type: AuthConstants.GET_USER, user: data }))
-      },
-      error => dispatch(failure({ type: AuthConstants.SIGN_UP_FAILURE, error }))
-    )
+        alert(response.error)
+      } else {
+        dispatch(
+          success({
+            type: AuthConstants.SIGN_UP_SUCCESS,
+            payload: user,
+          })
+        )
+        dispatch(signIn({ email, password }))
+      }
+    })
   }
 
 const signOut = () => dispatch => {
   dispatch(request({ type: AuthConstants.SIGN_OUT_REQUEST }))
-  return callApi('logout', 'post').then(
-    data =>
-      dispatch(success({ type: AuthConstants.SIGN_OUT_SUCCESS, user: data })),
-    error => dispatch(failure({ type: AuthConstants.SIGN_OUT_FAILURE, error }))
-  )
+  return callApi('logout', 'post').then(response => {
+    if (response.status === 'failed') {
+      dispatch(
+        failure({ type: AuthConstants.SIGN_OUT_FAILURE, error: response.error })
+      )
+      alert(response.error)
+    } else {
+      dispatch(
+        success({ type: AuthConstants.SIGN_OUT_SUCCESS, user: response.data })
+      )
+    }
+  })
 }
 
 const AuthActions = {

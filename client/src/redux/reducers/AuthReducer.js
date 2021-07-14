@@ -6,6 +6,7 @@ let initialState = {
   loginPending: true,
   error: null,
   loadingResult: false,
+  token: null,
 }
 
 const AuthReducer = (state = initialState, action) => {
@@ -21,9 +22,8 @@ const AuthReducer = (state = initialState, action) => {
     case AuthConstants.SIGN_UP_SUCCESS:
       return {
         ...state,
-        auth: true,
-        user: action.data,
-        loginPending: false,
+        auth: false,
+        loginPending: true,
         loadingResult: false,
         error: null,
       }
@@ -32,7 +32,7 @@ const AuthReducer = (state = initialState, action) => {
         ...state,
         error: action.error,
         auth: false,
-        loginPending: false,
+        loginPending: true,
         loadingResult: false,
       }
     case AuthConstants.SIGN_IN_REQUEST:
@@ -47,9 +47,10 @@ const AuthReducer = (state = initialState, action) => {
       return {
         ...state,
         auth: true,
-        user: action.data,
+        user: action.payload.user,
         loginPending: false,
         loadingResult: false,
+        token: action.payload.token,
         error: null,
       }
     case AuthConstants.SIGN_IN_FAILURE:
@@ -57,7 +58,7 @@ const AuthReducer = (state = initialState, action) => {
         ...state,
         error: action.error,
         auth: false,
-        loginPending: false,
+        loginPending: true,
         loadingResult: false,
       }
     case AuthConstants.SIGN_OUT_REQUEST:
@@ -72,7 +73,8 @@ const AuthReducer = (state = initialState, action) => {
         ...state,
         auth: false,
         user: null,
-        loginPending: false,
+        token: null,
+        loginPending: true,
         loadingResult: false,
       }
     case AuthConstants.SIGN_OUT_FAILURE:

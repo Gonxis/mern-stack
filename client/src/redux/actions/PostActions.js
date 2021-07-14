@@ -9,8 +9,9 @@ export function addPost(post) {
 }
 
 export function addPostRequest(post) {
-  return dispatch => {
-    return callApi('posts', 'post', {
+  return (dispatch, getState) => {
+    const state = getState()
+    return callApi(`api/posts?secret_token=${state.auth.token}`, 'post', {
       post: {
         name: post.name,
         title: post.title,
@@ -28,16 +29,20 @@ export function addPosts(posts) {
 }
 
 export function fetchPosts() {
-  return dispatch => {
-    return callApi('posts').then(res => {
+  return (dispatch, getState) => {
+    const state = getState()
+    return callApi(`api/posts?secret_token=${state.auth.token}`).then(res => {
       dispatch(addPosts(res.posts))
     })
   }
 }
 
 export function fetchPost(cuid) {
-  return dispatch => {
-    return callApi(`posts/${cuid}`).then(res => dispatch(addPost(res.post)))
+  return (dispatch, getState) => {
+    const state = getState()
+    return callApi(`api/posts/${cuid}?secret_token=${state.auth.token}`).then(
+      res => dispatch(addPost(res.post))
+    )
   }
 }
 
@@ -49,9 +54,11 @@ export function deletePost(cuid) {
 }
 
 export function deletePostRequest(cuid) {
-  return dispatch => {
-    return callApi(`posts/${cuid}`, 'delete').then(() =>
-      dispatch(deletePost(cuid))
-    )
+  return (dispatch, getState) => {
+    const state = getState()
+    return callApi(
+      `api/posts/${cuid}?secret_token=${state.auth.token}`,
+      'delete'
+    ).then(() => dispatch(deletePost(cuid)))
   }
 }

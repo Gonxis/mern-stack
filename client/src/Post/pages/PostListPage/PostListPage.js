@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router'
 // Import Components
 import PostList from '../../components/PostList'
 import PostCreateWidget from '../../components/PostCreateWidget'
@@ -15,6 +16,7 @@ import Logo from '../../../logo.svg'
 const PostListPage = ({ showAddPost }) => {
   const dispatch = useDispatch()
   const posts = useSelector(state => state.posts.data)
+  const { auth } = useSelector(state => state.auth)
 
   useEffect(() => {
     dispatch(fetchPosts())
@@ -28,6 +30,10 @@ const PostListPage = ({ showAddPost }) => {
 
   const handleAddPost = post => {
     dispatch(addPostRequest(post))
+  }
+
+  if (!auth) {
+    return <Redirect to='/login' />
   }
 
   return (
