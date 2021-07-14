@@ -1,61 +1,44 @@
+# Alaya mern dev challenge
 
-# Alaya mern dev challenge 
+## Setup project 🚀
 
+In order to run the project, you will need to have installed Node.js and mongoDb locally as a service.
 
-In this project which is a MERN stack you can write and edit post blog.
+This project is composed by 2 diferent projects inside one: the server and the client and you will need to install the dependencies of each project with `npm install` inside the root directory of each project. After you had installed the dependencies, you will be able to run each project in a separate terminal.
 
-This application is composed by 2 repositories, the server and the client:
-
-- In the server repository you can find an express HTTP server that connect to a local mongo database and expose
-the api.
-To start the server be sure to have installed mongoDB locally as a service then go in the server repository and launch the index.js
-```$xslt
-    cd server
-    npm i
-    node index.js
-```
-If you want to restart the server at any change you can also install nodemon and start the server like this
-```
-    cd server
-    npm i
-    npm i -g nodemon
-    nodemon index.js
-```
-- In the client repository you have the Front-end code of the blog that uses React and Redux.
-To start the Front-end
-```
-    cd client
-    npm i
-    npm start
+```sh
+cd server
+npm i or npm install
+node index or nodemon index
 ```
 
+```sh
+cd client
+npm i or npm install
+npm start
+```
 
-## Show us your skills :)
+## Project configuration ⚙️
 
-To show us your skills we would like you to build theses 2 things:
+This project was forked from [Alaya mern dev challenge](https://github.com/Onigam/mern-stack) that was already created with [Create React App](https://create-react-app.dev/) and had some features on it.
 
-### 1 - User account management
+I added some packages that I like to use in order to mantain all my components and files syntactically equal and also to know and fix some issues quickly.
 
-At first we want the users to be able to create their account to post Articles.
+- ESLint
+- Prettier
 
-To do that you need to create a login page or dialog and a signup process.
+On the server project I used Passport with a JWT policy to manage the user session. So in the server project I have this modules among others:
 
-We want you to use JWT to manage user session https://jwt.io/, to do that you can use passport with a JWT policy.
+- jsonwebtoken
+- passport
+- passport-jwt
+- passport-local
+- bcrypt
 
-Only connected users will be able to create post, and only the author of the post will be able to delete it
+## Refactoring the project
 
-### 2 - Picture upload
+I refactored the client project a little bit 📚
 
-Here we want the user to be able to upload and manage pictures on his post.
-
-Free to you to use the service you want to do that and to store your assets (like Cloudinary for example).
-
-The purpose is to enhance post with media.
-
-You can design the layout you want on cards and on each post page and use the styling you want.
-
-Also if you want to add one or more features or change the layout, styling and theming about the blog you can.
-
-Good luck :)
-
-_Notes: For evaluation, we will mainly focus on the code structure and readability, the separation of responsibilities in the methods/components, and the visual consistency._
+- src/components
+- src/pages
+- src/redux
