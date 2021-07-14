@@ -36,6 +36,10 @@ const PostListPage = ({ showAddPost }) => {
     return <Redirect to='/login' />
   }
 
+  if (posts === undefined) {
+    return <p>Loading...</p>
+  }
+
   return (
     <div className='container'>
       <div className='row'>
