@@ -3,14 +3,16 @@ import Toolbar from '@material-ui/core/Toolbar'
 import AppBar from '@material-ui/core/AppBar'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
+import { useSelector } from 'react-redux'
 
-function Navbar() {
+const Navbar = () => {
+  const { auth } = useSelector(state => state.auth)
   return (
     <AppBar position='fixed'>
       <Toolbar>
         <Typography variant='h6' style={{ marginRight: 15 }}>
           <Link href='/login' className='text-white'>
-            Login
+            {auth ? 'Logout' : 'Login'}
           </Link>
         </Typography>
         <Typography variant='h6'>
