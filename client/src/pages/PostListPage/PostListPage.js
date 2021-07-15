@@ -11,7 +11,7 @@ import {
   deletePostRequest,
   fetchPosts,
 } from '../../redux/actions/PostActions'
-import Logo from '../../../logo.svg'
+import Logo from '../../logo.svg'
 
 const PostListPage = ({ showAddPost }) => {
   const dispatch = useDispatch()

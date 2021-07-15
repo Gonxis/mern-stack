@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
+    "cloudinary-core": "^2.11.4",
+    "cloudinary-react": "^1.7.0",
     "fetch": "^1.1.0",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.7.2",
