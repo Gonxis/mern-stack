@@ -17,6 +17,7 @@ export function addPostRequest(post) {
         title: post.title,
         content: post.content,
         image: post.image,
+        authorId: state.auth.user._id,
       },
     }).then(res => dispatch(addPost(res.post)))
   }

@@ -53,12 +53,7 @@ I have complete the sign up and log in functionality and some implementations I 
 
 - Mantain the session of the user even if refreshing the page
 - Doing log out only when clicking on the `logout` navigation button
-- Disable deleting a post unless it's the author of it.
 
 ### Picture upload 🏞️
 
 I have completed the picture upload functionality. I made it with Cloudinary as mentioned at the original project.
-
-I still have to:
-
-- Apply some CSS styles in order to see all the images with the same size or at least smaller than they are now.

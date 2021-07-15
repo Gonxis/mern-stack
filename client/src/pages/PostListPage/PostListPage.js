@@ -16,7 +16,8 @@ import Logo from '../../logo.svg'
 const PostListPage = ({ showAddPost }) => {
   const dispatch = useDispatch()
   const posts = useSelector(state => state.posts.data)
-  const { auth } = useSelector(state => state.auth)
+  const { auth, user } = useSelector(state => state.auth)
+  const { _id } = user
 
   useEffect(() => {
     dispatch(fetchPosts())
@@ -59,7 +60,11 @@ const PostListPage = ({ showAddPost }) => {
           <PostCreateWidget addPost={handleAddPost} showAddPost={showAddPost} />
         </div>
         <div className='col-6'>
-          <PostList handleDeletePost={handleDeletePost} posts={posts} />
+          <PostList
+            handleDeletePost={handleDeletePost}
+            posts={posts}
+            userId={_id}
+          />
         </div>
       </div>
     </div>

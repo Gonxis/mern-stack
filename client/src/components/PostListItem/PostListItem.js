@@ -8,7 +8,7 @@ import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import { CloudinaryContext, Image } from 'cloudinary-react'
 
-function PostListItem({ post, onDelete }) {
+function PostListItem({ post, onDelete, userId }) {
   return (
     <Card className='w-100 my-4'>
       {post.image && (
@@ -41,11 +41,13 @@ function PostListItem({ post, onDelete }) {
           From {post.name}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size='small' color='secondary' onClick={onDelete}>
-          Delete post
-        </Button>
-      </CardActions>
+      {post.authorId === userId && (
+        <CardActions>
+          <Button size='small' color='secondary' onClick={onDelete}>
+            Delete post
+          </Button>
+        </CardActions>
+      )}
     </Card>
   )
 }
