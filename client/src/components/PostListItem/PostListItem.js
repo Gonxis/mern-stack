@@ -12,13 +12,16 @@ function PostListItem({ post, onDelete }) {
   return (
     <Card className='w-100 my-4'>
       {post.image && (
-        <CardMedia>
+        <CardMedia
+          style={{ display: 'flex', flex: 1, justifyContent: 'center' }}
+        >
           <CloudinaryContext cloudName='gonxis0'>
             <Image
               key={post.image}
               publicId={post.image}
               fetch-format='auto'
               quality='auto'
+              style={{ width: 200, maxWidth: '100%', height: 200 }}
             />
           </CloudinaryContext>
         </CardMedia>
