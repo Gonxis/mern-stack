@@ -1,7 +1,7 @@
 import AuthConstants from '../types/AuthConstants'
 
 let initialState = {
-  user: null,
+  user: { _id: 0 },
   auth: false,
   loginPending: true,
   error: null,
