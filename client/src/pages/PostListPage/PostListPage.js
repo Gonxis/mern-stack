@@ -17,7 +17,6 @@ const PostListPage = ({ showAddPost }) => {
   const dispatch = useDispatch()
   const posts = useSelector(state => state.posts.data)
   const { auth, user } = useSelector(state => state.auth)
-  const { _id } = user
 
   useEffect(() => {
     dispatch(fetchPosts())
@@ -63,7 +62,7 @@ const PostListPage = ({ showAddPost }) => {
           <PostList
             handleDeletePost={handleDeletePost}
             posts={posts}
-            userId={_id}
+            userId={user._id}
           />
         </div>
       </div>
