@@ -19,7 +19,7 @@ app.use("/api", passport.authenticate("jwt", { session: false }), posts);
 
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
-  res.json({ error: err });
+  res.json({ status: "failed", error: err });
 });
 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));

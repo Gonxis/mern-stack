@@ -15,7 +15,7 @@ passport.use(
       try {
         return done(null, token.user);
       } catch (error) {
-        done(error);
+        done(error, null, { status: "failed", error });
       }
     }
   )
@@ -34,7 +34,7 @@ passport.use(
 
         return done(null, user);
       } catch (error) {
-        done(error);
+        done(error, false, { status: "failed", error });
       }
     }
   )
@@ -72,7 +72,10 @@ passport.use(
           message: "Logged in Successfully",
         });
       } catch (error) {
-        return done(error);
+        return done(error, false, {
+          status: "failed",
+          error: { message: error },
+        });
       }
     }
   )
